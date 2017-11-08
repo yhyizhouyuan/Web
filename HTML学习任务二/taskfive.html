@@ -1,0 +1,59 @@
+<!DOCTYPE>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 01</title>
+    <style type="text/css">
+    .aqi_chart_wrap {
+        width: 100%;
+        height: 550px;
+        border: #ccc 1px solid;
+        position: relative;
+    }
+    </style>
+</head>
+
+<body>
+    <fieldset id="form_gra_time">
+        <legend>请选择日期粒度：</legend>
+        <label>日
+            <input name="gra_time" value="day" type="radio" checked="checked">
+        </label>
+        <label>周
+            <input name="gra_time" value="week" type="radio">
+        </label>
+        <label>月
+            <input name="gra_time" value="month" type="radio">
+        </label>
+        <legend>请选择查看的城市：</legend>
+        <select id="city_select">
+            <option>北京</option>
+            <option>长沙</option>
+            <option>上海</option>
+            <option>深圳</option>
+        </select>
+    </fieldset>
+    <div class="aqi_chart_wrap" id="aqi">
+    </div>
+    <script type="text/javascript">
+    var aqi = document.getElementById("aqi"),
+        city_select = document.getElementById("city_select"),
+        form_gra_time = document.getElementById("form_gra_time"),
+        Date_main = "2016-01-01",
+        m = 1,
+        Color = ["red", "blue", "green", "yellow", "black"];
+    /*******************************************************/
+    //保存数据
+    function randomBuildData(seed) {
+        var returnData = {};
+        var dat = new Date(Date_main);
+        var datStr = '';
+        for (var i = 1; i < 92; i++) {
+            datStr = getDateStr(dat);
+            returnData[datStr] = Math.ceil(Math.random() * seed);
+            dat.setDate(dat.getDate() + 1);
+        }
+        return returnData;
+        返回一个数组
+    }
