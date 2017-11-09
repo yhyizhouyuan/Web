@@ -114,3 +114,13 @@
         } else {
             T_day += num; //不能整除就累加
         };
+  /*获取1 2 3月分别天数的总数据*/
+        if (Time <= 31) {
+            T_one += num; //一月
+        }
+        if (31 < Time <= 60) {
+            T_two += num; //二月
+        }
+        if (60 < Time <= 91) {
+            T_three += num; //三月
+        }
