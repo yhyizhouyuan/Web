@@ -57,3 +57,60 @@
         return returnData;
         返回一个数组
     }
+     function getDateStr(dat) {
+        var y = dat.getFullYear();
+        var m = dat.getMonth() + 1;
+        m = m < 10 ? '0' + m : m;
+        var d = dat.getDate();
+        d = d < 10 ? '0' + d : d;
+        return y + '-' + m + '-' + d;
+    }
+    var aqiSourceData = {
+        "北京": randomBuildData(500),
+        "上海": randomBuildData(300),
+        "长沙": randomBuildData(200),
+        "深圳": randomBuildData(100)
+    };
+    //获取哪一个城市 给出相应的数据
+    function GetGo() {
+        var Aqi_text = city_select.value;
+        for (var aqi in aqiSourceData) {
+            if (Aqi_text == aqi) {
+                for (var datStr in aqiSourceData[aqi]) { //初始化数据
+                    a1(aqiSourceData[aqi][datStr], datStr);
+                }
+            }
+        }
+        GetInput();
+        Array_Date = [];
+        Array_Minth = [];
+        Array_day = [];
+        Array_Date_order = [];
+        Array_Minth_order = [];
+        Array_day_order = [];
+    }
+    //1 2 3月
+    var Time = 1,
+        T_one, //1月
+        T_two, //2月
+        T_three, //三月
+        T_day, //星期
+        Array_Date = [],
+        Array_Date_order = [],
+        Array_Minth = [],
+        Array_Minth_order = [],
+        Array_day = [],
+        Array_day_order = [];
+    //这里会执行92次  请注意
+    function a1(num, datStr) {
+        /* 这里是92天的数据 */
+        Array_Date.push(num); //num
+        Array_Date_order.push(datStr); //时间
+        /*92天每七天存入一次数据*/
+        if (Time % 7 == 0) {
+            Array_day.push(T_day / 7); //把七天的平均数存入数组
+            Array_day_order.push("第" + Time / 7 + "个星期"); //把时间存入数组
+            T_day = 0; //重新刷新七天数据
+        } else {
+            T_day += num; //不能整除就累加
+        };
