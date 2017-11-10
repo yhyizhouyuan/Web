@@ -124,3 +124,22 @@
         if (60 < Time <= 91) {
             T_three += num; //三月
         }
+         /* 数据回临 */
+        if (Time == 91) {
+            if (T_day != 0) {
+                Array_day.push(T_day / (Time % 7)); //最后一个不能被整除的平均数存入数组
+                Array_day_order.push("第" + (Math.floor(Time / 7) + 1) + "个星期");
+            }
+           
+            Array_Minth.push(T_one / 51);
+            Array_Minth.push(T_two / 49);
+            Array_Minth.push(T_three / 51);
+            Array_Minth_order.push("一月");
+            Array_Minth_order.push("二月");
+            Array_Minth_order.push("三月");
+            T_day == 0;
+            Time = 0;
+            T_one = 0;
+            T_two = 0;
+            T_three = 0;
+        }
