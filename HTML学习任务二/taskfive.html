@@ -143,3 +143,34 @@
             T_two = 0;
             T_three = 0;
         }
+        Time++; //累加1
+    }
+    /**************************************************/
+    function GetImage(num_height, ds, L, W) {
+        var div_Date = document.createElement("div"); //生成div
+        aqi.appendChild(div_Date);
+        div_Date.style.position = "absolute";
+        div_Date.style.background = Color[Math.round(Math.random() * 4)];
+        div_Date.style.width = W + "px";
+        div_Date.style.bottom = 0;
+        div_Date.borderRadius=8+"px";//为啥没有用啊。。。。。。
+        div_Date.style.left = (L * m + (m - 1) * W) + 30 + "px";
+        div_Date.setAttribute("title", ds);
+        Ma(div_Date, parseInt(num_height)); //传入元素 实现动画生成效果            
+    }
+    //存储
+    var Time_1 = null;
+    //动态生成效果函数
+    function Ma(obj, Num_height) {
+        m++;
+        obj.Time_1 = setInterval(function() {
+            var ircu = parseInt(attrElement(obj, "height"));
+            var speed = (Num_height - ircu) / 10;
+            speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+            if (ircu == Num_height) {
+                clearInterval(obj.Time_1);
+            } else {
+                obj.style.height = ircu + speed + "px";
+            }
+        }, 50);
+    }
