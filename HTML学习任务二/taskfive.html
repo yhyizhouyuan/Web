@@ -174,3 +174,50 @@
             }
         }, 50);
     }
+    //获取样式
+    function attrElement(obj, attr) {
+        if (obj.currentStyle) {
+            return obj.currentStyle[attr];
+        } else {
+            return getComputedStyle(obj, false)[attr];
+        }
+    }
+    function GetInput(obj) {
+        aqi.innerHTML = " ";
+        m = 1;
+        var button_click = form_gra_time.getElementsByTagName("input");
+        for (var i = 0; i < button_click.length; i++) {
+            if (button_click[i].checked == true) {
+                var b_v = button_click[i].value;
+                if (b_v == "day") {
+                    for (var j = 0; j < Array_Date.length; j++) {
+                        GetImage(Array_Date[j], Array_Date_order[j], 8, 6);
+                    };
+                } else if (b_v == "week") {
+                    for (var j = 0; j < Array_day.length; j++) {
+                        GetImage(Array_day[j], Array_day_order[j], 55, 40);
+                    };
+                } else if (b_v == "month") {
+                    for (var j = 0; j < Array_Minth.length; j++) {
+                        GetImage(Array_Minth[j], Array_Minth_order[j], 180, 150);
+                    };
+                }
+            }
+        }
+    }
+    window.onload = function() {
+        var button_click = form_gra_time.getElementsByTagName("input");
+        for (var i = 0; i < button_click.length; i++) {
+            button_click[i].onclick = function() {
+                if (this.checked == true) {
+                    GetGo();
+                }
+            }
+        };
+        city_select.onchange = GetGo;
+        GetGo(); //第一步  初始化
+    }
+    </script>
+</body>
+
+</html>
